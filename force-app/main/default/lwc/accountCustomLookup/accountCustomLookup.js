@@ -47,16 +47,17 @@ export default class AccountCustomLookup extends LightningElement {
   }
 
   onSelect(event) {
-    let selectedUserId = event.currentTarget.dataset.id;
-    let selectedName = event.currentTarget.dataset.name;
-    // const valueSelectedEvent = new CustomEvent("lookupselected", {
-    //   detail: {
-    //     user: selectedUserId,
-    //     person: selectedPersonId,
-    //     personName: selectedName
-    //   }
-    // });
-    // this.dispatchEvent(valueSelectedEvent);
+    let selectedAccountId = event.currentTarget.dataset.id;
+      let selectedName = event.currentTarget.dataset.name;
+
+      //next 2 lines to send the selected account name and id to parent
+       const valueSelectedEvent = new CustomEvent("lookupselected", {
+      detail: {
+        account: selectedAccountId,
+        name: selectedName,
+      }
+    });
+    this.dispatchEvent(valueSelectedEvent);
     this.isValueSelected = true;
     this.selectedName = selectedName;
     if (this.blurTimeout) {
@@ -64,7 +65,7 @@ export default class AccountCustomLookup extends LightningElement {
     }
     this.boxClass =
       "slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-has-focus";
-      console.log(selectedUserId);
+      console.log(selectedAccountId);
   }
 
   handleRemovePill() {
